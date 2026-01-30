@@ -161,7 +161,7 @@ func noopRender(c *gin.Context, response *proxy.Response) {
 	if response.Io == nil {
 		return
 	}
-	io.Copy(c.Writer, response.Io)
+	io.Copy(newFlushWriter(c.Writer), response.Io)
 }
 
 var emptyResponse = gin.H{}
